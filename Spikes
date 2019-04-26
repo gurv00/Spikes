@@ -1,0 +1,45 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class Spikes : MonoBehaviour
+{
+
+    public bool spikes;
+    private Animator anim;
+    public float cycleTime;
+    private float cycleTimeCounter;
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        anim = GetComponent<Animator>();
+        spikes = true;
+        anim.SetBool("SpikesOn", true);
+        cycleTimeCounter = cycleTime;
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        if(cycleTimeCounter > 0)
+        {
+            cycleTimeCounter -= Time.deltaTime;
+        }
+
+        if(cycleTimeCounter <= 0)
+        {
+            if (spikes == true)
+            {
+                spikes = false;
+                anim.SetBool("SpikesOn", false);
+                cycleTimeCounter = cycleTime;
+            } else
+            {
+                spikes = true;
+                anim.SetBool("SpikesOn", true);
+                cycleTimeCounter = cycleTime;
+            }
+        }
+    }
+}
